@@ -8,10 +8,10 @@ import { axios } from './config/index';
 import categoriesQuery from './schema/category';
 import listQuery from './schema/list';
 import utils from './utils/index';
-type PostItem = {
+interface PostItem {
   post_date: string;
   date?: string;
-};
+}
 
 export default new Vuex.Store({
   state: {
@@ -23,8 +23,8 @@ export default new Vuex.Store({
     SET_CATEGORIES(state, payload = []) {
       state.categories = payload;
     },
-    SET_LIST(state, payload: [PostItem] = []) {
-      state.list = payload.map(item => ({
+    SET_LIST(state, payload = []) {
+      state.list = payload.map((item: any) => ({
         ...item,
         date: utils.timeStampFormat(item.post_date, 'yyyy-MM-dd'),
       }));

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import {mapState, mapActions} from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 import postBrief from './PostBrief.vue';
 
@@ -14,8 +14,7 @@ export default {
     postBrief,
   },
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     ...mapState(['list']),

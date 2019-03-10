@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = {
   // 基本路径
   // baseUrl: '/',
@@ -14,17 +17,28 @@ module.exports = {
   configureWebpack: {
     resolve: {
       // .mjs needed for https://github.com/graphql/graphql-js/issues/1272
-      extensions: ['*', '.mjs', '.ts', '.js', '.vue', '.json', '.gql', '.graphql']
+      extensions: [
+        '*',
+        '.mjs',
+        '.ts',
+        '.js',
+        '.vue',
+        '.json',
+        '.gql',
+        '.graphql',
+      ],
     },
     module: {
-      rules: [ // fixes https://github.com/graphql/graphql-js/issues/1272
+      rules: [
+        // fixes https://github.com/graphql/graphql-js/issues/1272
         {
           test: /\.mjs$/,
           include: /node_modules/,
-          type: 'javascript/auto'
-        }
-      ]
-    }
+          type: 'javascript/auto',
+        },
+      ],
+    },
+    plugins: [new CompressionPlugin()],
   },
   // vue-loader 配置项
   // https://vue-loader.vuejs.org/en/options.html
@@ -40,7 +54,7 @@ module.exports = {
     // css预设器配置项
     loaderOptions: {},
     // 启用 CSS modules for all css / pre-processor files.
-    modules: false
+    modules: false,
   },
   // use thread-loader for babel & TS in production build
   // enabled by default if the machine has more than 1 cores
@@ -59,12 +73,19 @@ module.exports = {
     hotOnly: false,
     overlay: {
       warnings: false,
-      errors: false
+      errors: false,
     },
     // 设置代理
-    // proxy: {},
-
+    proxy: {
+      '/api': {
+        target: 'https://www.daozhao.com.cn', //目标接口域名
+        changeOrigin: true, //是否跨域
+        pathRewrite: {
+          '^/api': '', //重写接口
+        },
+      },
+    },
   },
   // 第三方插件配置
-  pluginOptions: {}
-}
+  pluginOptions: {},
+};

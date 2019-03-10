@@ -26,17 +26,19 @@ export default {
   async created() {
     const res = await this.$http.post('/graphql', {
       query: queryStr,
-      variables:{
+      variables: {
         id: this.$route.params.id,
-      }
+      },
     });
-    const { data: { data } } = res;
+    const {
+      data: { data },
+    } = res;
     this.detail = data.post;
   },
-  beforeRouteLeave(to, from, next){
+  beforeRouteLeave(to, from, next) {
     setTimeout(() => {
       next(); // 避免loading效果过快消失
     }, 400);
   },
-}
+};
 </script>

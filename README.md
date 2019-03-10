@@ -1,2 +1,13 @@
 # daozhao_vue_wordpress
-FE: vue，BE: WordPress/GraphQL with data from daozhao.com
+
+#### FE
+
+vue + typescript + pwa
+
+#### BE
+
+WordPress/GraphQL
+
+#### DB
+
+from daozhao.com

@@ -8,7 +8,7 @@
           <span class="line line-middle"></span>
           <span class="line line-bottom"></span>
         </span>
-        <div class="flex-col header-title ellipsis"> 网站php升级记录		</div>
+        <div class="flex-col header-title ellipsis"> {{config.static.websiteName}}		</div>
 
         <div class="search-wrap" id="search-wrap">
 
@@ -26,17 +26,21 @@
 </template>
 
 <script>
-  import {mapState, mapMutations, mapActions} from 'vuex'
-import CategoryNav from './components/CategoryNav'
+import { mapState, mapMutations, mapActions } from 'vuex';
+import CategoryNav from './components/CategoryNav';
+import { config } from './config';
 
 export default {
   components: {
-    CategoryNav
+    CategoryNav,
   },
   data() {
     return {
-
-    }
+      config,
+    };
+  },
+  provide() {
+    return config;
   },
   computed: {
     ...mapState(['categories']),
@@ -53,11 +57,10 @@ export default {
     ...mapActions(['_getCategories']),
   },
   watch: {
-    $route(to, from){
+    $route(to, from) {
       // 页面跳转就开启loading效果
       this.TOGGLE_LOADING(true);
-    }
-  }
-}
+    },
+  },
+};
 </script>
-

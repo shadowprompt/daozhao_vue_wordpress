@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --mode dev",
+    "build": "vue-cli-service build --mode prod",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -13,7 +13,6 @@
     "element-ui": "^2.6.1",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
-    "jszip": "^3.2.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
@@ -29,6 +28,7 @@
     "@vue/cli-plugin-typescript": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "babel-plugin-graphql-tag": "^2.0.0",
+    "compression-webpack-plugin": "^2.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "typescript": "^3.0.0",
