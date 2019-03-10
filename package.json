@@ -1,5 +1,5 @@
 {
-  "name": "vuecli3",
+  "name": "daozhao_vue_wordpress",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-plugin-import-graphql": "^2.6.2",
+    "element-ui": "^2.6.1",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "jszip": "^3.2.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
@@ -16,10 +22,13 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/graphql": "^14.0.7",
+    "@types/vue": "^2.0.0",
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-plugin-pwa": "^3.0.1",
     "@vue/cli-plugin-typescript": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
+    "babel-plugin-graphql-tag": "^2.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "typescript": "^3.0.0",

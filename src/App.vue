@@ -1,29 +1,63 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <div id="loading" :class="$store.state.isLoading? 'active' : ''"></div>
+    <header class="top-header" id="header">
+      <div class="flex-row">
+        <span class="header-icon waves-line on" id="menu-toggle">
+          <span class="line line-top"></span>
+          <span class="line line-middle"></span>
+          <span class="line line-bottom"></span>
+        </span>
+        <div class="flex-col header-title ellipsis"> 网站php升级记录		</div>
+
+        <div class="search-wrap" id="search-wrap">
+
+        </div>
+      </div>
+    </header>
+    <header id="nav">
+      <category-nav></category-nav>
+    </header>
+    <section class="container body-wrapper">
+      <router-view/>
+    </section>
+
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+  import {mapState, mapMutations, mapActions} from 'vuex'
+import CategoryNav from './components/CategoryNav'
+
+export default {
+  components: {
+    CategoryNav
+  },
+  data() {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapState(['categories']),
+  },
+  async created() {
+    this._getCategories();
+  },
+  mounted() {
+    // 将this传入并设置axios拦截器
+    this.$http.setConfig(this);
+  },
+  methods: {
+    ...mapMutations(['TOGGLE_LOADING']),
+    ...mapActions(['_getCategories']),
+  },
+  watch: {
+    $route(to, from){
+      // 页面跳转就开启loading效果
+      this.TOGGLE_LOADING(true);
     }
   }
 }
-</style>
+</script>
+
