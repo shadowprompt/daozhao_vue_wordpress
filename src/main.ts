@@ -10,6 +10,7 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
+import './assets/font-awesome/scss/font-awesome.scss';
 import './assets/style.scss';
 
 new Vue({

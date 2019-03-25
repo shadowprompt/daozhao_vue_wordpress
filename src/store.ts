@@ -13,11 +13,39 @@ interface PostItem {
   date?: string;
 }
 
+interface ToggleType {
+  [key: string]: boolean;
+  isLoading: boolean;
+  isCollapsed: boolean;
+}
+
+interface StateType {
+  [key: string]: any;
+}
+//
+// const toggleState: ToggleType = {
+//
+// };
+interface ListType {
+  categories: any[];
+  list: any[];
+}
+type payloadIndex = 'isLoading' | 'isCollapsed';
+type FromIndex = { [key in payloadIndex]?: boolean | undefined };
+
+const theState = {
+  categories: [],
+  list: [],
+  isLoading: false,
+  isCollapsed: true,
+};
+
 export default new Vuex.Store({
   state: {
-    isLoading: false,
     categories: [],
     list: [],
+    isLoading: false,
+    isCollapsed: true, // 侧边菜单是否折叠
   },
   mutations: {
     SET_CATEGORIES(state, payload = []) {
@@ -31,6 +59,9 @@ export default new Vuex.Store({
     },
     TOGGLE_LOADING(state, payload) {
       state.isLoading = payload;
+    },
+    TOGGLE_COLLAPSE(state, payload) {
+      state.isCollapsed = payload === undefined ? !state.isCollapsed : payload;
     },
   },
   actions: {

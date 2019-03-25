@@ -36,9 +36,19 @@ module.exports = {
           include: /node_modules/,
           type: 'javascript/auto',
         },
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]?[hash]',
+          },
+        },
       ],
     },
-    plugins: [new CompressionPlugin()],
+    plugins: [
+      new CompressionPlugin(),
+      // TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin(),
+    ],
   },
   // vue-loader 配置项
   // https://vue-loader.vuejs.org/en/options.html
